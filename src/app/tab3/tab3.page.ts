@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GeniusService } from '../services/genius.service';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(public geniusService: GeniusService ) {
+    this.geniusService.getMonthSongs();
+  }
 
 }

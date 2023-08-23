@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { GeniusService } from '../services/genius.service';
+// import { PhotoService, UserPhoto } from '../services/photo.service';
+// import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-
-  constructor() {}
-
+  constructor(public geniusService: GeniusService) {
+    this.geniusService.getWeekSongs();
+  }
 }
