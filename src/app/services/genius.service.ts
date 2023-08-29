@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Song } from '../models/genius';
 import axios from 'axios';
 import { combineLatest } from 'rxjs';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class GeniusService {
 
   constructor() {
     this.GENIUS_BASE_URL = 'https://genius-song-lyrics1.p.rapidapi.com/chart/songs/';
-    this.RAPID_API_KEY = '167fd80720msh7931c477ba653e7p1ebc29jsne866b0cb4a51';
+    this.RAPID_API_KEY = environment.RAPID_API_KEY;
     this.headers = {
       'x-rapidapi-key': this.RAPID_API_KEY,
       'x-rapidapi-host': 'genius-song-lyrics1.p.rapidapi.com'
