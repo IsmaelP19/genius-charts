@@ -13,12 +13,12 @@
     </ion-toolbar>
   </ion-header>
 
-  <div style="display: flex; flex-wrap: wrap;">
+  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
     <div *ngFor="let song of geniusService.songsWeek; index as position">
-      <ion-card >
+      <ion-card (click)="setOpen(true, song)" style="width: 300px;">
         <ion-img [src]="song.cover"></ion-img>
         <ion-card-header>
-          <ion-card-title [style.font-size.rem]="1.2" >{{song.title}}</ion-card-title>
+          <ion-card-title [style.font-size.rem]="1.2">{{song.title}}</ion-card-title>
           <ion-card-subtitle>#{{position + 1}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
@@ -28,19 +28,6 @@
     </div>
   </div>
 
-  <!-- <ion-grid>
-    <ion-row>
-      <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
-        <ion-img [src]="photo.webviewPath" (click)="showActionSheet(photo, position)"></ion-img>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addPhotoToGallery()">
-      <ion-icon name="camera"></ion-icon>
-    </ion-fab-button>
-  </ion-fab> -->
-
-  <!-- <app-explore-container name="Tab 2 page"></app-explore-container> -->
+  <ion-action-sheet [isOpen]="isActionSheetOpen" [buttons]="actionSheetButtons"
+    (didDismiss)="setOpen(false, undefined)"></ion-action-sheet>
 </ion-content>

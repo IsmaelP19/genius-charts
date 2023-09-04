@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { GeniusService } from '../services/genius.service';
 import { ShareService } from '../services/share.service';
+import { Song } from '../models/genius';
+import { ActionSheet, ActionSheetButtonStyle } from '@capacitor/action-sheet';
 
 @Component({
   selector: 'app-tab1',
@@ -13,12 +15,33 @@ export class Tab1Page {
     this.geniusService.getDaySongs();
   }
 
-  share() {
-    this.shareService.shareApp();
+  isActionSheetOpen = false;
+  selectedSong: Song | undefined;
+
+  share(song: Song) {
+    this.shareService.shareApp(song);
   }
 
-  // add a share button to the template
 
+  public actionSheetButtons = [
+    {
+      text: 'Compartir',
+      icon: 'share-social-outline',
+      handler: () => {
+        this.share(this.selectedSong!);
+      }
+    },
+    {
+      text: 'Cancelar',
+      icon: 'close-circle-outline',
+      role: 'cancel',
+    }
+  ]
+
+  setOpen(isOpen: boolean, song: Song | undefined) {
+    this.isActionSheetOpen = isOpen;
+    this.selectedSong = song;
+  }
 
 
 }

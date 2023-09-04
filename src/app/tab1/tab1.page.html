@@ -13,9 +13,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <div style="display: flex; flex-wrap: wrap;">
+  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
     <div *ngFor="let song of geniusService.songsDay; index as position">
-      <ion-card>
+      <ion-card style="width: 300px;" (click)="setOpen(true, song)">
         <ion-img [src]="song.cover"></ion-img>
         <ion-card-header>
           <ion-card-title [style.font-size.rem]="1.2">{{song.title}}</ion-card-title>
@@ -26,13 +26,9 @@
         </ion-card-content>
       </ion-card>
     </div>
-    <div style="position: fixed; right: 20px; bottom: 30px;">
-      <ion-fab-button color="success" (click)="share()">
-        <ion-icon name="share-social-outline"></ion-icon>
-      </ion-fab-button>
-    </div>
   </div>
 
-
+  <ion-action-sheet [isOpen]="isActionSheetOpen" [buttons]="actionSheetButtons"
+    (didDismiss)="setOpen(false, undefined)"></ion-action-sheet>
 
 </ion-content>

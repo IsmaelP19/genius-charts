@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Share } from '@capacitor/share';
+import { Song } from '../models/genius';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,9 @@ export class ShareService {
 
   constructor() { }
 
-  public async shareApp() {
+  public async shareApp(song: Song) {
     await Share.share({
-      title: 'Mira!!',
-      text: 'Prueba esta nueva aplicación para descubrir la música más top',
-      url: 'https://github.com/IsmaelP19/genius-charts',
-      dialogTitle: 'Comparte con tus amigos'
+      text: 'Estoy como loco escuchando ' + song.title + ' de ' + song.artist.name + '. ¡Es increíble!',
     });
   }
 }
